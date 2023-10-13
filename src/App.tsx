@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {
+    Route,
+    Link,
+    Routes,
+    BrowserRouter
+} from "react-router-dom";
+import { Container, Row, Col } from 'react-bootstrap';
+import Login from './components/pages/login/Login';
+import Register from './components/pages/register/Registration';
+import HomePage from './components/pages/home_page/Home';
+import NotFound from './components/pages/not_found/NotFound';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                        <Link to="/register">Register</Link>
+                    </li>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Container>
+                <Row>
+                    <Col>
+                        <Routes>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </Col>
+                </Row>
+            </Container>
+        </BrowserRouter>
+
+    );
 }
 
 export default App;
